@@ -16,9 +16,56 @@
 
     <title>Hackathon - SpaceX Launch Event</title>
     <script>
+function Fly(){
+        let Full_Name = document.getElementById("{{Full_Name}}").value;
+        if (Full_Name.length == 0) {
+            Full_Name = "Invalid"
+        }
+        let count = 0;
+        for (let i = 0; i < Full_Name.length; i++) {
+            if (Full_Name[i] === " ") {
+                count++;
+            }
+        }
+        if (count > 0) {
+            Full_Name = Full_Name;
+        }
+        Full_Name = Full_Name.toLowerCase().split(' ');
+        for (let i = 0; i < Full_Name.length; i++) {
 
-            // Add your JavaScript code here
+            Full_Name[i] = Full_Name[i].charAt(0).toUpperCase() + Full_Name[i].substring(1);
+        }
 
+        Full_Name = Full_Name.join(' ');
+
+        let Email_Add = document.getElementById("{{Email_Add}}").value;
+        let count2
+        for (let i = 0; i < Email_Add.length; i++) {
+            if (Email_Add[i] == "@" && Email_Add[i + 1] == ".") {
+                count2++;
+            }
+        }
+        if (count2 > 0) {
+            Email_Add = Email_Add;
+        }
+
+        let Phone_num = document.getElementById("{{Phone_Num}}").value;
+       if(Phone_num.length ===12 && Phone_num[3]=="-" & Phone_num[8]==="-"){
+           Phone_num=Phone_num;
+       }
+
+       let Company_Name = document.getElementById("{{SW_Company}}").value;
+       if(Company_Name.length>0){
+           Company_Name=Company_Name;
+       }
+
+
+       let Stat_Name = document.getElementById("{{SW_State}}").value;
+       if(Stat_Name.length==2){
+           Stat_Name=Stat_Name.toUpperCase();
+       }
+}
+Fly();
     </script>
 </head>
 
@@ -56,7 +103,7 @@
                     <input type="{{FILL_OUT}}" class="form-control" id="{{FILL_OUT}}" />
                 </div>
                 <div class="form-group">
-                    <input type="{{FILL_OUT}}" class="btn btn-primary" value="Launch" />
+                    <input type="{{FILL_OUT}}" Id="Fly()" class="btn btn-primary" value="Launch" />
                 </div>
             </div>
             <div class="col-md-6">
@@ -64,10 +111,12 @@
                     <div class="card">
                         <img src="spaceship.jpg" class="spaceship" alt="Spaceship">
                         <div class="card-body">
-                            <h5 class="card-title" id="{{FILL_OUT}}">{{FILL_OUT_FULL_NAME}}</h5>
-                            <p class="card-text" id="{{FILL_OUT}}">{{FILL_OUT_COMPANY_NAME}}, {{FILL_OUT_STATE}}</p>
-                            <p class="card-text" id="{{FILL_OUT}}">{{FILL_OUT_PHONE_NUMBER}}</p>
-                            <p class="card-text" id="{{FILL_OUT}}">{{FILL_OUT_EMAIL_ADDRESS}}</p>
+                            <h5 class="card-title" id="{{Full_Name}}">{{FILL_OUT_FULL_NAME}}</h5>
+                            <p class="card-text" id="{{SW_Company}}">{{FILL_OUT_COMPANY_NAME}}, {{FILL_OUT_STATE}}</p>
+                            <p class="card-text" id="{{SW_State}}">{{FILL_OUT_STATE}}</p>
+
+                            <p class="card-text" id="{{Phone_Num}}">{{FILL_OUT_PHONE_NUMBER}}</p>
+                            <p class="card-text" id="{{Email_Add}}">{{FILL_OUT_EMAIL_ADDRESS}}</p>
                         </div>
                         <div class="card-body">
                             <img id="barcode" alt="barcode">
